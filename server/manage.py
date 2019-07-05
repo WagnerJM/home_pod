@@ -4,7 +4,7 @@ from app import create_app
 from app.database import db
 
 from app.api.user.models import User
-from app.api.stammdaten.models import SentosaSetting
+from app.api.system.models import systemSettings
 
 
 app = create_app()
@@ -34,7 +34,35 @@ def create_admin_user():
 
 @cli.command("create_sytem_settings")
 def systemSettings():
-    pass
+    if not User.get_settings():
+        print("System Email")
+        system_email = input(prompt)
+        
+        print("Email Password")
+        email_password = input(prompt)
+
+        print("SMTP HOST")
+        smtp_host = input(prompt)
+
+        print("SMTP PORT")
+        smtp_port = input(prompt)
+
+        print("TLS?")
+        email_tls = input(prompt)
+
+        settings = SystemSettings(
+            system_email,
+            email_password,
+            smtp_host,
+            smtp_port,
+            email_tls
+        )
+        settings.save()
+        print("System Einstellungen angelegt.")
+    else:
+        print("System Einstellungen existieren bereits.")
+        
+
 
 
 if __name__ == '__main__':
