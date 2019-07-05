@@ -32,8 +32,8 @@ def create_admin_user():
         else:
             print("Admin user already exists")
 
-@cli.command("create_sentosa_setting")
-def create_sentosa_setting():
+@cli.command("create_sytem_settings")
+def systemSettings():
     pass
 
 
