@@ -1,6 +1,11 @@
 # Home Pod
 
 ## Notizen
+https://selenium-python.readthedocs.io/navigating.html?highlight=click
+
+https://spotipy.readthedocs.io/en/latest/#authorized-requests
+
+
 https://developer.spotify.com/console/get-search-item/?q=Hysteria%2CMuse&type=track%2Cartist&market=DE&limit=&offset=
 
 https://stackoverflow.com/questions/46753393/how-to-make-firefox-headless-programmatically-in-selenium-with-python
