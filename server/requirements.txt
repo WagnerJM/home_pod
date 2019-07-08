@@ -12,6 +12,7 @@ celery[redis]
 celery
 bcrypt
 redis
+flask-redis
 Flask-JWT-Extended
 selenium
 sounddevice

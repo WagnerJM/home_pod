@@ -16,21 +16,20 @@ class SystemSettingApi(Resource):
         response['system_settings'] = schema.dump(settings).data
 
         return response, 200
-    
+
+class SystemSettingUpdateApi(Resource):
+
     @admin_required
     def put(self):
         response = {}
         schema = SystemSettingSchema()
-        results = schema.load(request.json)
+        
 
-        if not results.errors:
-            settings = SystemSetting.query.filter_by(id=1)
-            settings.update(request.json)
-            db.session.commit()
-            response["status"] = "OK"
-            settings = SystemSetting.get_settings()
-            response["system_settings"] = schema.dump(settings).data
-            return response, 200
-        else:
-            response['status'] = "ERROR"
-            return response, 404
+        
+        settings = SystemSetting.query.filter_by(id=1)
+        settings.update(request.json)
+        db.session.commit()
+        response["status"] = "OK"
+        settings = SystemSetting.get_settings()
+        response["system_settings"] = schema.dump(settings).data
+        return response, 200

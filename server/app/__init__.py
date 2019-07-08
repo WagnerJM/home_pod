@@ -7,6 +7,8 @@ from app.serializer import ma
 from flask_migrate import Migrate
 from flask_cors import CORS
 
+from app.cache import redis_client
+
 from app.config import app_config
 from app.security import TokenBlacklist
 
@@ -86,11 +88,18 @@ def create_app():
 	api.add_resource(UserRegisterApi, "/api/v1/register")
 	api.add_resource(UserApi, "/api/v1/user")
 
-	from app.api.system.resources import SystemSettingApi
+	from app.api.system.resources import SystemSettingApi, SystemSettingUpdateApi
 	api.add_resource(SystemSettingApi, "/api/v1/system/settings")
+	api.add_resource(SystemSettingUpdateApi, "/api/v1/system/setting")
+
+	from app.api.recorder.resources import TokenCacheApi, RecorderApi, SearchApi
+	api.add_resource(TokenCacheApi, "/api/v1/saveToken")
+	api.add_resource(SearchApi, "/api/v1/search")
+	api.add_resource(RecorderApi, "/api/v1/record")
 
 	
 
+	redis_client.init_app(app)
 	db.init_app(app)
 	migrate = Migrate(app, db)
 	ma.init_app(app)

@@ -11,6 +11,8 @@ class Config(object):
 	JWT_SECRET_KEY = os.getenv('JWT_SECRET')
 	JWT_BLACKLIST_ENABLED = True
 	JWT_BLACLIST_TOKEN_CHECKS = ['access', 'refresh']
+	REDIS_URL = 'redis://:{pw}@redis:6379/0'.format(pw=os.getenv('REDIS_PW'))
+
 
 	# TODO: create secret key func and create secret key at creation if the file
 	SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(user=POSTGRES_USER,pw=POSTGRES_PW,url=POSTGRES_URL,db=DATABASE)
