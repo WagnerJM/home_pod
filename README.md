@@ -1,5 +1,11 @@
 # Home Pod
 
+## Notizen
+
+https://stackoverflow.com/questions/46753393/how-to-make-firefox-headless-programmatically-in-selenium-with-python
+
+https://realpython.com/playing-and-recording-sound-python/#python-sounddevice_1
+
 ## todo
 
 
