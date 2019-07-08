@@ -30,6 +30,7 @@ class SystemSettingSchema(ma.ModelSchema):
     class Meta:
         model = SystemSetting
         fields = (
+            "id",
             "system_email",
             "email_password",
             "smtp_host",
