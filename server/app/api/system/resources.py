@@ -6,15 +6,18 @@ from app.database import db
 from app.api.system.models import SystemSetting, SystemSettingSchema
 
 class SystemSettingApi(Resource):
+    
+    @admin_required
     def get(self):
         response = {}
         settings = SystemSetting.get_settings()
         schema = SystemSettingSchema()
         response['status'] = "OK"
-        reponse['system_settings'] = settings.dump(settings).data
+        response['system_settings'] = schema.dump(settings).data
 
         return response, 200
-
+    
+    @admin_required
     def put(self):
         response = {}
         schema = SystemSettingSchema()

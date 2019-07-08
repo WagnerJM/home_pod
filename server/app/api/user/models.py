@@ -12,7 +12,7 @@ class User(db.Model, BaseMixin):
 
     def __init__(self, username, password, email):
         self.username = username
-        self._password = self.hash_pw(password.encode('uft-8'))
+        self._password = self.hash_pw(password.encode('utf-8'))
         self.email = email
 
     def hash_pw(self, password):

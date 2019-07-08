@@ -1,7 +1,7 @@
 from app.database import db, BaseMixin
 from app.serializer import ma
 
-class SystemSetting(Resource):
+class SystemSetting(db.Model, BaseMixin):
     __tablename__ = "systemSetting"
 
     system_email = db.Column(db.String)
@@ -9,6 +9,10 @@ class SystemSetting(Resource):
     smtp_port = db.Column(db.Integer, default=587)
     smtp_host = db.Column(db.String, default="smtp.gmail.com")
     email_tls = db.Column(db.Boolean, default=True)
+    framesize = db.Column(db.BigInteger, default=44100)
+    driver_path = db.Column(db.String)
+    profile_path = db.Column(db.String)
+    spotify_token = db.Column(db.String)
 
 
     def __init__(self, system_email, email_password, smtp_host, smtp_port, email_tls):
@@ -30,5 +34,9 @@ class SystemSettingSchema(ma.ModelSchema):
             "email_password",
             "smtp_host",
             "smtp_port",
-            "email_tls"
+            "email_tls",
+            "framesize",
+            "driver_path",
+            "profile_path",
+            "spotify_token"
         )

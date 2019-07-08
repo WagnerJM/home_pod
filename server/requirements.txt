@@ -13,6 +13,10 @@ celery
 bcrypt
 redis
 Flask-JWT-Extended
-
+selenium
+sounddevice
+scipy
+spotipy
+pylint
 gunicorn
 pytest

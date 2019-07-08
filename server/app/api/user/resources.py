@@ -4,6 +4,7 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 
 from app.security import TokenBlacklist
 from app.api.user.models import User, UserSchema
+import datetime
 
 class UserRegisterApi(Resource):
     def post(self):

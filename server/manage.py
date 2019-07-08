@@ -4,7 +4,7 @@ from app import create_app
 from app.database import db
 
 from app.api.user.models import User
-from app.api.system.models import systemSettings
+from app.api.system.models import SystemSetting
 
 
 app = create_app()
@@ -34,7 +34,7 @@ def create_admin_user():
 
 @cli.command("create_sytem_settings")
 def systemSettings():
-    if not User.get_settings():
+    if not SystemSetting.get_settings():
         print("System Email")
         system_email = input(prompt)
         
@@ -46,15 +46,21 @@ def systemSettings():
 
         print("SMTP PORT")
         smtp_port = input(prompt)
+        port = int(smtp_port)
 
         print("TLS?")
-        email_tls = input(prompt)
+        email_tls = input("yes/no?")
 
-        settings = SystemSettings(
+        if email_tls.lower() == "yes":
+            email_tls = True
+        else:
+            email_tls = False
+
+        settings = SystemSetting(
             system_email,
             email_password,
             smtp_host,
-            smtp_port,
+            port,
             email_tls
         )
         settings.save()
