@@ -5,6 +5,7 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 from app.security import TokenBlacklist
 from app.api.user.models import User, UserSchema
 import datetime
+from app.database import db
 
 class UserRegisterApi(Resource):
     def post(self):
@@ -73,6 +74,18 @@ class UserApi(Resource):
     
     @jwt_required
     def put(self):
-        pass
+        user_id = get_jwt_identity()
+        user = User.query.filter_by(id=user_id)
+        user.update(request.json)
+        db.session.commit()
+
+        user = User.find_by_id(get_jwt_identity())
+        schema = UserSchema()
+
+        response = {
+            "status": "OK",
+            "user": schema.dump(user).data
+        }
+        return response, 200
 
     

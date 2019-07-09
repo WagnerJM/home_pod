@@ -9,11 +9,13 @@ class User(db.Model, BaseMixin):
     _password = db.Column(db.LargeBinary(60))
     is_admin = db.Column(db.Boolean)
     email = db.Column(db.String)
+    ort = db.Column(db.String)
 
     def __init__(self, username, password, email):
         self.username = username
         self._password = self.hash_pw(password.encode('utf-8'))
         self.email = email
+
 
     def hash_pw(self, password):
         return bcrypt.hashpw(password, bcrypt.gensalt(12))
@@ -33,6 +35,7 @@ class UserSchema(ma.ModelSchema):
             "id",
             "username",
             "is_admin", 
-            "email"
+            "email",
+            "ort"
         )
     

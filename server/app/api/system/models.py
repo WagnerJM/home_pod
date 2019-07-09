@@ -13,6 +13,7 @@ class SystemSetting(db.Model, BaseMixin):
     driver_path = db.Column(db.String)
     profile_path = db.Column(db.String)
     spotify_token = db.Column(db.String)
+    wetter_api_key = db.Column(db.String)
 
 
     def __init__(self, system_email, email_password, smtp_host, smtp_port, email_tls):
@@ -39,5 +40,6 @@ class SystemSettingSchema(ma.ModelSchema):
             "framesize",
             "driver_path",
             "profile_path",
-            "spotify_token"
+            "spotify_token",
+            "wetter_api_token"
         )
