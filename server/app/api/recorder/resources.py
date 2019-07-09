@@ -5,7 +5,7 @@ from flask_jwt_extended import get_jwt_claims, get_jwt_identity, jwt_required
 from app.cache import redis_client
 from app.worker import celery
 from app.api.user.models import User
-from app.api.system.models import SystemSettings
+from app.api.system.models import SystemSetting
 
 class SearchApi(Resource):
 
@@ -32,7 +32,7 @@ class RecorderApi(Resource):
         data = request.get_json()
         recordList = data['recordList']
 
-        system = SystemSettings.get_settings()
+        system = SystemSetting.get_settings()
         
         for each in recordList:
             task = celery.send_task("createRecord", args=(each['name'], each['durations_ms'], each['id'], system))
