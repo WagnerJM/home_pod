@@ -24,7 +24,7 @@ def send_email(user_email, settings):
 
     email['Subject'] = "Home Pod Liederliste"
     email['To'] = user_email
-    email['From'] settings.system_email
+    email['From'] = settings.system_email
 
     body = """
     Lieber Nutzer, \n
