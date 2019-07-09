@@ -49,6 +49,7 @@ def send_email(user_email, settings):
 
 @celery.task(name="createRecord")
 def create_record(track_name, duration_ms, track_id, settings):
+    duration = duration_ms / 1000
     options = Options()
     options.headless = True
     profile = webdriver.FirefoxProfile(settings.profile_path)
@@ -59,10 +60,10 @@ def create_record(track_name, duration_ms, track_id, settings):
     )
     spotify_url = "https://open.spotify.com/track/{}".format(track_id)
     driver.get(spotify_url)
-    duration = duration_ms / 1000
     driver.find_element_by_css_selector("button.btn.btn-green").click()
     recording = sd.rec(int(duration * settings.framesize), samplerate=settings.framesize, channels=2)
     sd.wait()
+    driver.quit()
     write('/input/{}.wav'.format(track_name), settings.framesize, recording)
     AudioSegment.from_wav(
         '/input/{}.wav'.format(track_name)

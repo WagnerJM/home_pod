@@ -47,6 +47,7 @@ class RecorderApi(Resource):
 
 
 class TokenCacheApi(Resource):
+    @jwt_required
     def post(self):
         """Put the token into the Cache"""
         data = request.get_json()
