@@ -32,7 +32,7 @@ def create_admin_user():
         else:
             print("Admin user already exists")
 
-@cli.command("create_sytem_settings")
+@cli.command("create_system_settings")
 def systemSettings():
     if not SystemSetting.get_settings():
         print("System Email")
