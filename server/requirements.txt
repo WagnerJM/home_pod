@@ -21,3 +21,4 @@ spotipy
 pylint
 gunicorn
 pytest
+watchdog

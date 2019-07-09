@@ -3,6 +3,9 @@ from flask import request
 from flask_restful import Resource
 from flask_jwt_extended import get_jwt_claims, get_jwt_identity, jwt_required
 from app.cache import redis_client
+from app.worker import celery
+from app.api.user.models import User
+from app.api.system.models import SystemSettings
 
 class SearchApi(Resource):
 
@@ -23,10 +26,24 @@ class SearchApi(Resource):
         
 
 class RecorderApi(Resource):
+    @jwt_required
     def post(self):
         "Record the passed list"
         data = request.get_json()
-        return data["recordList"]
+        recordList = data['recordList']
+
+        system = SystemSettings.get_settings()
+        
+        for each in recordList:
+            task = celery.send_task("createRecord", args=(each['name'], each['durations_ms'], each['id'], system))
+        user = User.find_by_id(get_jwt_identity())
+
+        task = celery.send_task("sendDoneEmail", args=(user.email, system))
+
+
+        return {
+            "message": "Jobs wurden erstellt. Nachricht wird verstand wenn fertig."
+        }, 201
 
 
 class TokenCacheApi(Resource):

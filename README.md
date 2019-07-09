@@ -12,6 +12,16 @@ https://stackoverflow.com/questions/46753393/how-to-make-firefox-headless-progra
 
 https://realpython.com/playing-and-recording-sound-python/#python-sounddevice_1
 
+https://stackoverflow.com/questions/10287683/python-convert-wav-to-mp3
+
+https://stackoverflow.com/questions/18599339/python-watchdog-monitoring-file-for-changes
+
+https://www.michaelcho.me/article/using-pythons-watchdog-to-monitor-changes-to-a-directory
+
+https://blog.magrathealabs.com/filesystem-events-monitoring-with-python-9f5329b651c3
+
+https://linuxconfig.org/install-ffmpeg-on-ubuntu-18-04-bionic-beaver-linux
+
 ## todo
 
 

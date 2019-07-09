@@ -13,3 +13,12 @@ marshmallow-sqlalchemy
 psycopg2-binary
 redis
 Flask-JWT-Extended
+selenium
+sounddevice
+scipy
+spotipy
+pylint
+gunicorn
+pytest
+pydub
+watchdog
