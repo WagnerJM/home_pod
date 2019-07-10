@@ -1,6 +1,8 @@
 # Home Pod
 
 ## Notizen
+https://github.com/corydolphin/flask-cors/issues/212
+
 https://medium.com/@niveditha.itengineer/learn-how-to-setup-portaudio-and-pyaudio-in-ubuntu-to-play-with-speech-recognition-8d2fff660e94
 
 https://selenium-python.readthedocs.io/navigating.html?highlight=click
