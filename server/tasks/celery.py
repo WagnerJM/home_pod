@@ -56,7 +56,7 @@ def create_record(track_name, duration_ms, track_id, settings):
     driver = webdriver.Firefox(
         options=options,
         firefox_profile=profile,
-        excutable_path=settings.driver_path
+        executable_path=settings.driver_path
     )
     spotify_url = "https://open.spotify.com/track/{}".format(track_id)
     driver.get(spotify_url)
