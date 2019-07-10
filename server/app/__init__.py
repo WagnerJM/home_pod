@@ -18,10 +18,10 @@ def create_app():
 	app = Flask(__name__)
 	api = Api(app)
 	config_name = os.getenv("APP_SETTINGS")
-	app.config['CORS_HEADERS'] = 'Content-Type'
 
-	CORS(app)
-	#cors = CORS(app, resources={r"/api/*": {"origins": ["*"]}})
+	#CORS(app)
+	cors = CORS(app, resources={r"/api/*": {"origins": ["*",]}})
+	app.config['CORS_HEADERS'] = 'Content-Type'
 	app.config.from_object(app_config[config_name])
 
 	jwt = JWTManager(app)
