@@ -20,7 +20,7 @@ def create_app():
 	config_name = os.getenv("APP_SETTINGS")
 
 	#CORS(app)
-	cors = CORS(app, resources={r"/api/*": {"origins": ["*",]}})
+	cors = CORS(app, resources={r"/api/*": {"origins": ["192.168.0.185","192.168.0.185:8080", "localhost"]}})
 	app.config['CORS_HEADERS'] = 'Content-Type'
 	app.config.from_object(app_config[config_name])
 
