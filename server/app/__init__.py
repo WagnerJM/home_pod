@@ -20,8 +20,8 @@ def create_app():
 	config_name = os.getenv("APP_SETTINGS")
 	app.config['CORS_HEADERS'] = 'Content-Type'
 
-	
-	cors = CORS(app, resources={r"/api/*": {"origins": ["*"]}})
+	CORS(app)
+	#cors = CORS(app, resources={r"/api/*": {"origins": ["*"]}})
 	app.config.from_object(app_config[config_name])
 
 	jwt = JWTManager(app)
