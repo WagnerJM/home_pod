@@ -34,11 +34,14 @@ def send_email(user_email, settings):
 
     s = smtplib.SMTP(host=settings.smtp_host, port=int(settings.smtp_port))
     if settings['email_tls']:
+        s.ehlo()
         s.starttls()
+        s.ehlo()
         s.login(settings.system_email, settings.email_password)
         s.send_message(email)
         s.quit()
     else:
+        s.ehlo()
         s.login(settings.system_email, settings.email_password)
         s.send_message(email)
         s.quit()
