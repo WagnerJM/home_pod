@@ -37,19 +37,32 @@ class RecorderApi(Resource):
         tracks['recordList'] = data['recordList']
         settings = SystemSetting.get_settings()
         schema = SystemSettingSchema()
-        
-        tracks['settings'] = schema.dump(settings).data
-        RECORDER_IP = os.getenv("RECORDER_IP")
-        PORT = 65432
 
-        s = socket.Socket(socket.AF_INET, socket.SOCK_STREAM)
+        RECORDER_IP = "192.168.0.185"
+        PORT = 65432
+        tracks['settings'] = schema.dump(settings).data
+        
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((RECORDER_IP, PORT))
+        for record in tracks['recordList']:
+            obj = {
+                "trackname": record['name'],
+                "id": record['id'],
+                "duration_ms": record['duration_ms'],
+                "settings": {
+                "framesize": tracks['settings']['framesize'],
+                "driver_path": tracks['settings']['driver_path'],
+                "profile_path": tracks['settings']['profile_path']
+                }
+            }
+            for t in record['album']['artists']:
+                obj['artist'] = t['name']
+            
+            json_data = json.dumps(obj)
+            s.sendall(json_data.encode("utf-8"))
         
-        json_data = json.dumps(tracks)
-        
-        s.sendall(json_data)
-        
-        
+        s.sendall("end".encode('utf-8'))
+
         return {
             "message": "Jobs wurden erstellt. Nachricht wird verstand wenn fertig."
         }, 201
