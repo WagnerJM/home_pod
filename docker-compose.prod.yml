@@ -71,8 +71,8 @@ services:
     restart: always
     volumes:
       - ./server:/server
-    expose:
-      - "8000"
+    ports:
+      - 8000:8000
     networks:
       back:
       front:
