@@ -41,5 +41,5 @@ class SystemSettingSchema(ma.ModelSchema):
             "driver_path",
             "profile_path",
             "spotify_token",
-            "wetter_api_token"
+            "wetter_api_key"
         )
