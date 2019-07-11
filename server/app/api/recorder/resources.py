@@ -1,4 +1,5 @@
 import requests
+import os
 import json
 import socket
 from flask import request
@@ -68,6 +69,14 @@ class TokenCacheApi(Resource):
                 "message": "Token wurde gespeichert!",
                 "spotify_token": saved_token
                 }, 201
+        else:
+            redis_client.set("spotify_token", spotify_token)
+            saved_token = redis_client.get("spotify_token").decode("utf-8")
+            return {
+                "message": "Token wurde gespeichert!",
+                "spotify_token": saved_token
+            }, 201
+
 
         
 
