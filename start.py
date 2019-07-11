@@ -35,7 +35,6 @@ def create_env_file():
             "SECRET_KEY={}\n".format(SECRET_KEY),
             "JWT_SECRET={}\n".format(JWT_SECRET),
             "RECORDER_IP={}\n".format(RECORDER_IP)
-
         ]
 
         with open(os.path.join('.env'), 'a') as f:
