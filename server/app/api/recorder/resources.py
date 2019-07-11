@@ -35,7 +35,7 @@ class RecorderApi(Resource):
         system = SystemSetting.get_settings()
         
         for each in recordList:
-            task = celery.send_task("createRecord", args=(each['name'], each['durations_ms'], each['id'], system))
+            task = celery.send_task("createRecord", args=(each['name'], each['duration_ms'], each['id'], system))
         user = User.find_by_id(get_jwt_identity())
 
         task = celery.send_task("sendDoneEmail", args=(user.email, system))
