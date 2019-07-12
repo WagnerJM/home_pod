@@ -14,11 +14,9 @@ bcrypt
 redis
 flask-redis
 Flask-JWT-Extended
-selenium
-sounddevice
-scipy
-spotipy
 pylint
 gunicorn
 pytest
-watchdog
+pika
+autopep8
+pylint

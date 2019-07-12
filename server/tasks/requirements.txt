@@ -1,3 +1,6 @@
+pytest
+autopep8
+pylint
 celery
 redis
 flower
@@ -11,14 +14,5 @@ flask-migrate
 flask-marshmallow
 marshmallow-sqlalchemy
 psycopg2-binary
-redis
 Flask-JWT-Extended
-selenium
-sounddevice
-scipy
-spotipy
-pylint
 gunicorn
-pytest
-pydub
-watchdog

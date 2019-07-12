@@ -1,5 +1,6 @@
 import requests
 import os
+import pika
 import json
 import socket
 from flask import request
@@ -38,12 +39,14 @@ class RecorderApi(Resource):
         settings = SystemSetting.get_settings()
         schema = SystemSettingSchema()
 
-        RECORDER_IP = "192.168.0.185"
-        PORT = 65432
+        connection = pika.BlockingConnection(
+            pika.ConnectionParameters(host="localhost")
+        )
+        channel = connection.channel()
+        channel.queue_declare(queue="recorder")
         tracks['settings'] = schema.dump(settings).data
         
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect((RECORDER_IP, PORT))
+        
         for record in tracks['recordList']:
             obj = {
                 "trackname": record['name'],
@@ -59,10 +62,13 @@ class RecorderApi(Resource):
                 obj['artist'] = t['name']
             
             json_data = json.dumps(obj)
-            s.sendall(json_data.encode("utf-8"))
-        
-        s.sendall("end".encode('utf-8'))
-
+            channel.basic_publish(
+                exchange="", 
+                routing_key="hello", 
+                body=json_data
+            )
+            
+        connection.close()
         return {
             "message": "Jobs wurden erstellt. Nachricht wird verstand wenn fertig."
         }, 201
