@@ -21,7 +21,7 @@ Momentan verfügbare Dienste:
 
 ## todo
 
-[ ] Recorder Api verändern und Verbindung zu rabbitMQ
+[x] Recorder Api verändern und Verbindung zu rabbitMQ
 
 [ ] Code dokumentieren
 
