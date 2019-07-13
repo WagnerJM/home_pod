@@ -40,7 +40,7 @@ class RecorderApi(Resource):
         schema = SystemSettingSchema()
 
         connection = pika.BlockingConnection(
-            pika.ConnectionParameters(host="localhost")
+            pika.ConnectionParameters(host="172.17.0.2")
         )
         channel = connection.channel()
         channel.queue_declare(queue="recorder")
