@@ -1,7 +1,6 @@
 import os
 from celery import Celery, current_task
 from celery.result import AsyncResult
-from selenium import webdriver
 import smtplib
 from email.message import EmailMessage
 
