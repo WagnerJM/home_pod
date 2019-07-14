@@ -64,10 +64,9 @@ class RecorderApi(Resource):
             json_data = json.dumps(obj)
             channel.basic_publish(
                 exchange="", 
-                routing_key="hello", 
                 body=json_data
             )
-            
+        
         connection.close()
         return {
             "message": "Jobs wurden erstellt. Nachricht wird verstand wenn fertig."
