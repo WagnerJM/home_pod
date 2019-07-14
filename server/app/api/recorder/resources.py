@@ -63,7 +63,8 @@ class RecorderApi(Resource):
             
             json_data = json.dumps(obj)
             channel.basic_publish(
-                exchange="", 
+                exchange="",
+                routing_key="recorder",
                 body=json_data
             )
         
