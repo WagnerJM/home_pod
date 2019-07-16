@@ -13,9 +13,6 @@ BROKER_URL = 'redis://:{pw}@redis:6379/1'.format(pw=os.getenv('REDIS_PW'))
 celery = Celery('tasks', backend=REDIS_URL, broker=BROKER_URL)
 
 
-
-
-
 @celery.task(name="sendDoneEmail")
 def send_email(user_email, settings):
 
