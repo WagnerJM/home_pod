@@ -4,6 +4,9 @@ from celery.result import AsyncResult
 import smtplib
 from email.message import EmailMessage
 
+
+
+
 REDIS_URL = 'redis://:{pw}@redis:6379/0'.format(pw=os.getenv('REDIS_PW'))
 BROKER_URL = 'redis://:{pw}@redis:6379/1'.format(pw=os.getenv('REDIS_PW'))
 
